@@ -13,7 +13,6 @@ export default class MulterUtil {
     constructor(pathName: string = "") {
         this.pathName = pathName;
         this.uploadDir = path.join(__dirname, `../../assets/uploads/${pathName}`);
-        console.log("UPLOAD DIR: ", this.uploadDir);
         this.ensureUploadDir();
     }
 
@@ -29,7 +28,6 @@ export default class MulterUtil {
                 cb(null, this.uploadDir);
             },
             filename: (req, file, cb) => {
-                console.log(file);
                 (req as any).filePathName = this.pathName;
                 const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
                 cb(null, uniqueSuffix + path.extname(file.originalname));

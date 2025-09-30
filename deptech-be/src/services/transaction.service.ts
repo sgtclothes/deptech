@@ -55,7 +55,6 @@ class TransactionService extends ModelService {
     }
     async createTransaction(data: any, transaction?: Transaction) {
         try {
-            console.log("DATA TRANSAKSI: ", data);
             const response = await this.create(
                 {
                     ...data,

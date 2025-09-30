@@ -4,7 +4,6 @@ import Joi from "joi";
 class AuthValidator {
     async login(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            console.log("req.body", req.body);
             if (!req.body) {
                 res.status(400).json({
                     status: "failed",
