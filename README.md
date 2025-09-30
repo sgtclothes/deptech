@@ -16,11 +16,12 @@
 
 ### Frontend
 
-- Navigasi ke folder deptech-be
+- Navigasi ke folder deptech-fe
 - Menggunakan Laravel versi 12  
 - Buat file `.env`, ambil semua data dari `.env.example`  
 - Jalankan `composer install`  
-- Jalankan `composer run dev`  
+- Jalankan `composer run dev`
+- Server akan berjalan di http://localhost:8000 
 - Login menggunakan akun:  
   - email: admin@deptech.com  
   - password: abcDEF123!  
