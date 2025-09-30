@@ -17,15 +17,16 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $params = [
-            'limit' => $request->get('limit', 10),
+            'limit' => $request->get('limit', 1000),
             'offset' => $request->get('offset', 0),
             'search' => $request->get('search', ''),
         ];
 
         $response = $this->api->get('/admin/categories', $params);
         $categories = $response->successful() ? $response->json()['data']['rows'] : [];
+        $totalCount = $response->successful() ? $response->json()['data']['totalCount'] : 0;
 
-        return view('categories.index', compact('categories', 'params'));
+        return view('categories.index', compact('categories', 'params', 'totalCount'));
     }
 
     public function create()

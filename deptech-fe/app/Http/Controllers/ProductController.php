@@ -24,8 +24,9 @@ class ProductController extends Controller
 
         $response = $this->api->get('/admin/products', $params);
         $products = $response->successful() ? $response->json()['data']['rows'] : [];
+        $totalCount = $response->successful() ? $response->json()['data']['totalCount'] : 0;
 
-        return view('products.index', compact('products', 'params'));
+        return view('products.index', compact('products', 'params', 'totalCount'));
     }
 
     public function create()

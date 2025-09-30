@@ -24,8 +24,9 @@ class TransactionController extends Controller
 
         $response = $this->api->get('/admin/transactions', $params);
         $transactions = $response->successful() ? $response->json()['data']['rows'] : [];
+        $totalCount = $response->successful() ? $response->json()['data']['totalCount'] : 0;
 
-        return view('transactions.index', compact('transactions', 'params'));
+        return view('transactions.index', compact('transactions', 'params', 'totalCount'));
     }
 
     public function create()

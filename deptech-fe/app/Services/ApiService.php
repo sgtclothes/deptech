@@ -14,6 +14,16 @@ class ApiService
         $this->baseUrl = config('services.api.base_url');
     }
 
+    protected function handleResponse($response)
+    {
+        if ($response->status() === 401 || $response->status() === 419) {
+            session()->flush();
+            return redirect()->route('login')->send();
+        }
+
+        return $response;
+    }
+
     protected function getClient()
     {
         $http = Http::withOptions(['verify' => false]);
@@ -25,22 +35,24 @@ class ApiService
                 'Cookie' => $cookies
             ]);
         }
-
         return $http;
     }
 
     public function get($endpoint, $params = [])
     {
-        return $this->getClient()
+        $response = $this->getClient()
             ->withHeaders($this->getHeaders())
             ->get($this->baseUrl . $endpoint, $params);
+        return  $this->handleResponse($response);
     }
 
     public function post($endpoint, $data = [])
     {
-        return $this->getClient()
+        $response = $this->getClient()
             ->withHeaders($this->getHeaders())
             ->post($this->baseUrl . $endpoint, $data);
+
+        return $this->handleResponse($response);
     }
 
     public function postMultipart($endpoint, $data = [])
@@ -65,9 +77,11 @@ class ApiService
 
     public function put($endpoint, $data = [])
     {
-        return $this->getClient()
+        $response = $this->getClient()
             ->withHeaders($this->getHeaders())
             ->put($this->baseUrl . $endpoint, $data);
+
+        return $this->handleResponse($response);
     }
 
     public function putMultipart($endpoint, $data = [])
@@ -102,9 +116,11 @@ class ApiService
 
     public function delete($endpoint)
     {
-        return $this->getClient()
+        $response = $this->getClient()
             ->withHeaders($this->getHeaders())
             ->delete($this->baseUrl . $endpoint);
+
+        return $this->handleResponse($response);
     }
 
     protected function getHeaders()

@@ -97,7 +97,7 @@
     <div class="p-6 border-t border-gray-200">
         <div class="flex justify-between items-center">
             <div class="text-sm text-gray-700">
-                Showing {{ $params['offset'] + 1 }} to {{ $params['offset'] + count($transactions) }}
+                Showing {{ $params['offset'] + 1 }} to {{ $params['offset'] + $totalCount }}
             </div>
             <div class="flex gap-2">
                 @if($params['offset'] > 0)

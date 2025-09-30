@@ -24,8 +24,9 @@ class UserController extends Controller
 
         $response = $this->api->get('/admin/users', $params);
         $users = $response->successful() ? $response->json()['data']['rows'] : [];
+        $totalCount = $response->successful() ? $response->json()['data']['totalCount'] : 0;
 
-        return view('users.index', compact('users', 'params'));
+        return view('users.index', compact('users', 'params', 'totalCount'));
     }
 
     public function create()
