@@ -2,6 +2,8 @@
 
 ## How to Setup Project
 
+MODE : development (only)
+
 ### Backend
 
 - Navigasi ke folder deptech-be
