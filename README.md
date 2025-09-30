@@ -4,6 +4,7 @@
 
 ### Backend
 
+- Navigasi ke folder deptech-be
 - Gunakan database MySQL dan buatkan database dengan nama **deptech-db**  
 - Install sequelize-cli dari sini: https://sequelize.org/docs/v7/cli/  
 - Buat file `.env`, ambil semua data dari `.env.example`  
@@ -15,6 +16,7 @@
 
 ### Frontend
 
+- Navigasi ke folder deptech-be
 - Menggunakan Laravel versi 12  
 - Buat file `.env`, ambil semua data dari `.env.example`  
 - Jalankan `composer install`  
